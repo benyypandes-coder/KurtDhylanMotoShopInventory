@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             x:Class="KurtDhylanMotoShopInventory.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Bg">#090909</Color>
+            <Color x:Key="Card">#151515</Color>
+            <Color x:Key="Red">#E50914</Color>
+            <Color x:Key="White">#FFFFFF</Color>
+            <Color x:Key="Muted">#A0A0A0</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

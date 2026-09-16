@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KurtDhylanMotoShopInventory.MainPage"
+             BackgroundColor="{StaticResource Bg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <Label Text="KURT DHYLAN"
+                   TextColor="{StaticResource Red}"
+                   FontSize="28"
+                   FontAttributes="Bold"/>
+
+            <Label Text="MOTO SHOP • INVENTORY"
+                   TextColor="{StaticResource White}"
+                   FontSize="16"
+                   FontAttributes="Bold"/>
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                <Border Grid.Column="0" BackgroundColor="{StaticResource Card}" StrokeThickness="0" Padding="12">
+                    <VerticalStackLayout>
+                        <Label Text="PRODUCTS" TextColor="{StaticResource Muted}" FontSize="11"/>
+                        <Label x:Name="ProductCount" Text="0" TextColor="{StaticResource White}" FontSize="24" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1" BackgroundColor="{StaticResource Card}" StrokeThickness="0" Padding="12">
+                    <VerticalStackLayout>
+                        <Label Text="SERVICES" TextColor="{StaticResource Muted}" FontSize="11"/>
+                        <Label x:Name="ServiceCount" Text="0" TextColor="{StaticResource White}" FontSize="24" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="2" BackgroundColor="{StaticResource Card}" StrokeThickness="0" Padding="12">
+                    <VerticalStackLayout>
+                        <Label Text="LOW STOCK" TextColor="{StaticResource Muted}" FontSize="11"/>
+                        <Label x:Name="LowStockCount" Text="0" TextColor="{StaticResource Red}" FontSize="24" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                <SearchBar x:Name="ProductSearch"
+                           Placeholder="Search products..."
+                           TextChanged="ProductSearch_TextChanged"
+                           BackgroundColor="{StaticResource Card}"
+                           TextColor="{StaticResource White}"/>
+                <Button Grid.Column="1"
+                        Text="+ PRODUCT"
+                        Clicked="AddProduct_Clicked"
+                        BackgroundColor="{StaticResource Red}"
+                        TextColor="White"/>
+            </Grid>
+
+            <CollectionView x:Name="ProductsView" HeightRequest="300">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,4" Padding="12" BackgroundColor="{StaticResource Card}" StrokeThickness="0">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Brand}" TextColor="{StaticResource Muted}" FontSize="12"/>
+                                    <Label Text="{Binding Model}" TextColor="{StaticResource Muted}" FontSize="12"/>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="1" HorizontalOptions="End">
+                                    <Label Text="{Binding Price, StringFormat='₱{0:N2}'}" TextColor="{StaticResource Red}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Stock, StringFormat='Stock: {0}'}" TextColor="White" FontSize="12"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                <SearchBar x:Name="ServiceSearch"
+                           Placeholder="Search services..."
+                           TextChanged="ServiceSearch_TextChanged"
+                           BackgroundColor="{StaticResource Card}"
+                           TextColor="{StaticResource White}"/>
+                <Button Grid.Column="1"
+                        Text="+ SERVICE"
+                        Clicked="AddService_Clicked"
+                        BackgroundColor="{StaticResource Red}"
+                        TextColor="White"/>
+            </Grid>
+
+            <CollectionView x:Name="ServicesView" HeightRequest="220">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,4" Padding="12" BackgroundColor="{StaticResource Card}" StrokeThickness="0">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold"/>
+                                <Label Grid.Column="1" Text="{Binding LaborPrice, StringFormat='₱{0:N2}'}" TextColor="{StaticResource Red}" FontAttributes="Bold"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="↻ REFRESH"
+                    Clicked="Refresh_Clicked"
+                    BackgroundColor="#242424"
+                    TextColor="White"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
